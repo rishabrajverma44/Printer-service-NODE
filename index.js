@@ -25,16 +25,14 @@ app.use(bodyParser.json({ limit: "10mb" }));
 // --- Middleware to check API key ---
 app.use((req, res, next) => {
   const key = req.headers["x-api-key"] || req.query.api_key;
-  if (!key || key !== API_KEY) {
-    return res.status(401).json({ success: false, error: "Unauthorized" });
-  }
+  //   if (!key || key !== API_KEY) {
+  //     return res.status(401).json({ success: false, error: "Unauthorized" });
+  //   }
   next();
 });
 
-/**
- * GET /printers
- * Lists printers known to the OS (pdf-to-printer).
- */
+// GET /printers Lists printers known to the OS (pdf-to-printer).
+
 app.get("/printers", async (req, res) => {
   try {
     const printers = await pdfPrinter.getPrinters();
